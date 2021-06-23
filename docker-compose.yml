@@ -49,4 +49,5 @@ services:
     networks:
       - rede
 networks:
-  rede: bridge
+    rede: 
+        driver: bridge
