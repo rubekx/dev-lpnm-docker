@@ -1,0 +1,52 @@
+version: '3.6'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/services/app/Dockerfile
+    volumes:
+      - type: bind
+        source: ./app
+        target: /var/www/app
+    expose:
+      - "9000"
+    networks:
+      - rede
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/services/nginx/Dockerfile
+    ports:
+      - "8083:80"
+      - "4443:443"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /var/www/app
+      - type: bind
+        source: ./docker/data/nginx
+        target: /var/log/nginx
+    depends_on:
+      - app
+    networks:
+      - rede
+  mysql:
+    build:
+      context: .
+      dockerfile: ./docker/services/mysql/Dockerfile
+    restart: always
+    volumes:
+      - type: bind
+        source: ./docker/data/mysql
+        target: /var/lib/mysql
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3311:3306"
+    networks:
+      - rede
+networks:
+  rede: bridge
