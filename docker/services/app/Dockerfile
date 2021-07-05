@@ -56,5 +56,5 @@ RUN chmod +x /usr/local/bin/install-php-extensions \
 
 # Change current user to www
 # USER www-data
-RUN useradd -G www-data,root -u 1000 -d /var/www/app laravel 
-RUN  hown -R laravel:laravel /var/www/app
+# RUN useradd -G www-data,root -u 1000 -d /var/www/app laravel 
+# RUN  hown -R laravel:laravel /var/www/app
