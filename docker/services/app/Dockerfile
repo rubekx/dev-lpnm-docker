@@ -52,7 +52,9 @@ RUN chmod +x /usr/local/bin/install-php-extensions \
 #     && chown -R www-data:www-data /var/www/app \ 
 #     && chmod -R 755 /var/www/app
 
-RUN chown -R www-data:www-data /var/www/app
+# RUN chown -R www-data:www-data /var/www/app
 
 # Change current user to www
-USER www-data
+# USER www-data
+RUN useradd -G www-data,root -u 1000 -d /var/www/app laravel 
+RUN  hown -R laravel:laravel /var/www/app
