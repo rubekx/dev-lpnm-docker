@@ -35,7 +35,7 @@ RUN apk update && apk add --no-cache --virtual buildDeps autoconf \
     &&  apk del buildDeps
 
 # https://github.com/mlocati/docker-php-extension-installer
-ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions \
     && sync \
