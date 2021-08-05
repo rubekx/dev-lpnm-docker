@@ -53,15 +53,15 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-        - "${PHP_ADMIN_PORT}:80"
+      - "${PHP_ADMIN_PORT}:80"
     environment:
       PMA_ARBITRARY: 1
-       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-       MYSQL_USER: '${DB_USERNAME}'
-       MYSQL_PASSWORD: '${DB_PASSWORD}'
-       PMA_HOSTS: mysql
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      PMA_HOSTS: mysql
     networks:
-        - rede
+      - rede
 
 networks:
     rede: 
